@@ -2,8 +2,7 @@ import axios from "axios";
 import { GET_CART, ADD_TO_CART, REMOVE_FROM_CART, CART_LOADING } from "./types";
 import { tokenConfig } from "../actions/authAction";
 
-// let URL = "http://localhost:8000/api/cart";
-let URL = "/api/cart";
+let URL = "https://steve-ecommerce.herokuapp.com/api/cart";
 
 export const getCart = () => (dispatch, getState) => {
   dispatch({ type: CART_LOADING });

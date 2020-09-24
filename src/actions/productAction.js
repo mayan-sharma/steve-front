@@ -7,8 +7,7 @@ import {
   PRODUCTS_LOADING,
 } from "./types";
 
-// let URL = "http://localhost:8000/api/products";
-let URL = "/api/products";
+let URL = "https://steve-ecommerce.herokuapp.com/api/products";
 
 export const getProducts = () => (dispatch) => {
   dispatch({ type: PRODUCTS_LOADING });
