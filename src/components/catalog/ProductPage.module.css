@@ -1,0 +1,70 @@
+.container {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    padding: 1rem;
+}
+
+.img {
+    background: url("../../assets/ginger-cat-list-is-empty.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: #fff;
+    border-radius: 13px;
+    box-shadow: 2px 2px 3px 2px #ccc;
+    height: 80vh;
+    width: 40%;
+    /* margin */
+}
+
+.info {
+    padding: 2rem;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.info p {
+    font-size: 1.5rem;
+}
+
+.info button {
+    background-color: #fff;
+    border: none;
+    border-radius: 13px;
+    padding: 1rem 3rem;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 2px 2px 3px 2px #ccc;
+    transition: .2s ease-in-out;
+}
+
+.info button:hover {
+    color: #fff;
+    background-color: #000;
+}
+
+.disclaimer {
+    font-size: 1rem !important;
+    margin-left: 10px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        display: block;
+        padding: 0;
+        margin-top: 20px;
+    }
+
+    .img {
+        width: 90%;
+        margin: auto;
+    }
+
+    .info {
+        width: 90%;
+        margin: auto;
+    }
+}

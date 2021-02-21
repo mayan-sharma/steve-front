@@ -1,19 +1,47 @@
 .container {
-  width: 200px;
-  height: 250px;
-  text-align: center;
-  border: 2px solid #000;
+  display: flex;
+  /* justify-content: space-between; */
   position: relative;
-  margin: 20px 20px;
+  background-color: #fff;
+  border-radius: 13px;
+  box-shadow: 2px 2px 3px 2px #ccc;
+  padding: 1rem;
+  width: 80%;
+  margin: 20px 0px;
+  font-size: 1.3rem;
 }
 
-.container p {
-  font-size: 2rem;
+.img {
+  background: url("../../assets/2.jpg");
+  height: 100%;
+  width: 160px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 13px;
 }
 
-.container .remove {
-  font-size: 1.5rem;
+.container div:nth-child(1) {
+  display: flex;
+}
+
+.info {
+  margin-left: 20px;
+}
+
+.remove {
+  outline: none;
+  border: none;
+  background: url("../../assets/remove.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 25px;
+  height: 25px;
   position: absolute;
-  top: 5px;
-  right: 5px;
+  right: 15px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
 }

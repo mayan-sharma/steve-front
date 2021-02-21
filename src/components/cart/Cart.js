@@ -3,54 +3,70 @@ import { connect } from "react-redux";
 import { getCart } from "../../actions/cartAction";
 import CartItem from "./CartItem";
 import styles from "./Cart.module.css";
-import Loading from "../loading/Loading";
-import { Redirect } from "react-router-dom";
+import Loading2 from "../loading/Loading2";
 
 class Cart extends Component {
+
+  // state = {
+  //   products: [],
+  //   total: 0,
+  //   loaded: false,
+  // }
+  
   componentDidMount() {
     if (!this.props.userLoading) {
       this.props.getCart();
     }
   }
 
+  // componentDidUpdate() {
+  //   if (!this.props.cartLoading && !this.state.loaded) {
+      
+  //     let total = this.props.products.reduce((acc, product) => acc + product.price, 0);
+      
+  //     this.setState({
+  //       products: this.props.products,
+  //       loaded: true,
+  //       total: total,
+  //     })
+  //   }
+  // }
+
   render() {
-    if (!this.props.isAuthenticaed) {
-      return <Redirect to="/" />;
-    }
-    const items = this.props.products;
-    let total = 0;
-    items.forEach((item) => (total += item.price));
     return (
-      <div className={styles.container}>
-        <h1>CART</h1>
-        <div>
-          {this.props.cartLoading ? (
-            <Loading />
-          ) : (
+      this.props.isAuthenticaed ? (
+        <div className={styles.container}>
             <div className={styles.items}>
-              {items.length ? (
-                items.map((item) => (
-                  <CartItem
-                    key={item._id}
-                    name={item.name}
-                    price={item.price}
-                    id={item._id}
-                  />
-                ))
-              ) : (
-                <p>No items in cart</p>
+              { this.props.cartLoading ? 
+                <Loading2 /> : (
+                  this.props.products.length ? (
+                    this.props.products.map(product => (
+                      <CartItem key={product._id} id={product._id} name={product.name} price={product.price} />
+                    )) 
+                  ) : (<div className={styles.noItems}>No items in cart!</div>)
               )}
             </div>
-          )}
+            <div className={styles.info}>
+              { !this.props.cartLoading && (
+                this.props.products.map(product => (
+                  <div key={product._id}>
+                    <h2>{product.name}</h2>
+                    <h3>${product.price}</h3>
+                  </div>
+                ))
+              ) }
+              {/* <span>Proceed</span> */}
+            </div>
         </div>
-        <div className={styles.info}>
-          <p>Items: {items.length}</p>
-          <p>Total: ${total}</p>
-          <button>Next Step</button>
+      ) : (
+        <div className={styles.noAccess}>
+          <div className={styles.noAccessImg}></div>
+          <div>Login to access cart</div>
         </div>
-      </div>
-    );
+      ) 
+    )
   }
+  
 }
 
 const mapStateToProps = (state) => ({

@@ -1,18 +1,9 @@
 import React from "react";
-import { AiOutlineSync } from "react-icons/ai";
+import styles from "./Loading.module.css";
 
 const Loading = () => {
-  const style = {
-    fontSize: "4rem",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  };
-
   return (
-    <div style={style}>
-      <AiOutlineSync />
-    </div>
+    <div className={styles.container}></div>
   );
 };
 

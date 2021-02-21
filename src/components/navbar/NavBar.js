@@ -1,55 +1,78 @@
-import React from "react";
-// import "./NavBar.css";
+import React  from "react";
 import styles from "./NavBar.module.css";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logoutUser } from "../../actions/authAction";
 
 const NavBar = (props) => {
+
   const linkStyle = {
     textDecoration: "none",
     color: "#000",
   };
+
+  const handleClose = () => {
+    document.getElementById('fullNav').style.width = "0";
+  }
+
+  const handleOpen = () => {
+    document.getElementById('fullNav').style.width = "100%";
+  }
+
   return (
-    <div className={styles.container}>
-      <h2>
-        <Link to="/" style={linkStyle}>
-          STEVE
-        </Link>
-      </h2>
-      {props.isAuthenticated ? (
-        <ul>
-          <li>SEARCH</li>
-          <li>
-            <Link to="/products" style={linkStyle}>
-              CATALOG
-            </Link>
-          </li>
-          <li>
-            <Link to="/cart" style={linkStyle}>
-              CART
-            </Link>
-          </li>
-          <li>
+    <React.Fragment>
+      <div className={styles.container}>
+        <h4>
+          <Link to="/" style={linkStyle}>
+            STEVE
+          </Link>
+        </h4>
+        <div className={styles.icons}>
+          <Link to="/about" style={linkStyle}>
+            <span>ABOUT</span>
+          </Link>
+          <Link to="/catalog" style={linkStyle}>
+            <span>CATALOG</span>
+          </Link>
+          { 
+            props.isAuthenticated ? (
             <span onClick={props.logoutUser}>LOGOUT</span>
-          </li>
-        </ul>
-      ) : (
-        <ul>
-          <li>
-            <Link to="/products" style={linkStyle}>
-              CATALOG
+            ) : (
+            <Link to="/login" style={linkStyle}>      
+              <span>LOGIN</span>
             </Link>
-          </li>
-          <li>SEARCH</li>
-          <li>
-            <Link to="/login" style={linkStyle}>
-              LOGIN
+            )
+          }
+          <Link to="/cart" style={linkStyle}>
+            <span>CART</span>
+          </Link>
+        </div>
+        <span className={styles.openIcon} onClick={handleOpen}></span>
+      </div>
+      <div id="fullNav" className={styles.fullNav}>
+        <span className={styles.closeIcon} onClick={handleClose}></span>
+        <div>
+          <Link to="/about" style={linkStyle} onClick={handleClose}>
+            <span>ABOUT</span>
+          </Link>
+          <Link to="/catalog" style={linkStyle} onClick={handleClose}>
+            <span>CATALOG</span>
+          </Link>
+          { 
+            props.isAuthenticated ? (
+            <span onClick={props.logoutUser}>LOGOUT</span>
+            ) : (
+            <Link to="/login" style={linkStyle} onClick={handleClose}>      
+              <span>LOGIN</span>
             </Link>
-          </li>
-        </ul>
-      )}
-    </div>
+            )
+          }
+          <Link to="/cart" style={linkStyle} onClick={handleClose}>
+            <span>CART</span>
+          </Link>          
+        </div>
+      </div>
+    </React.Fragment>
   );
 };
 

@@ -1,0 +1,17 @@
+.container {
+    background: url("../../assets/ginger-cat-car-rental.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 300px;
+    width: 500px;
+    position: absolute;
+    top: 0%; left: 0%; right: 0%; bottom: 0%;
+    margin: auto;
+    transition: 2s;
+    animation: anim 1s infinite;
+}
+
+@keyframes anim {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(30%); }
+}

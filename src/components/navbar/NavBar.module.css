@@ -2,23 +2,80 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem;
+  background-color: #fff;
+  padding: .4rem;
+  border-radius: 13px;
+  box-shadow: 2px 2px 3px 2px #ccc;
 }
 
-.container h2 {
-  margin-left: 20px;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  letter-spacing: 0.5rem;
+.container h4 {
+  font-weight: 900;
+  margin-left: 40px;
+  letter-spacing: .2rem;
 }
 
-.container ul {
+.icons {
   display: flex;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.8rem;
 }
 
-.container ul li {
-  list-style: none;
-  margin-right: 40px;
-  cursor: pointer;
+.container div span {
+  margin: 0px 20px;
+}
+
+.openIcon {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: .8rem;
+  margin-right: 20px;
+  background: url("../../assets/menu-button.svg");
+  width: 30px;
+  height: 40px;
+}
+
+.closeIcon {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background: url("../../assets/cross-1.svg");
+  width: 50px;
+  height: 50px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.fullNav {
+  width: 0;
+  height: 100vh;
+  display: none;
+  overflow: hidden;
+  background-color: #fff;
+  position: absolute;
+  top: 0; bottom:0; left:0; right:0;
+  transition: .5s ease-in-out;
+  z-index: 100;
+}
+
+.fullNav div {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-align: center;
+  font-size: 3rem;
+}
+
+@media (max-width: 768px) {
+  
+  .fullNav {
+    display: block;
+  }
+  
+  .icons {
+    display: none;
+  }
+  
+  .openIcon {
+    display: flex;
+  }
 }

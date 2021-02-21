@@ -1,21 +1,21 @@
 import React from "react";
+import Home from "./components/home/Home";
 import NavBar from "./components/navbar/NavBar";
-import Menu from "./components/dashboard/menu/Menu";
-import Path from "./components/dashboard/path/Path";
-import Products from "./components/dashboard/products/Products";
-import ProductDetail from "./components/dashboard/productDetail/ProductDetail";
-import Cart from "./components/cart/Cart";
-import Dashboard from "./components/dashboard/Dashboard";
+import Page404 from "./components/Page404/Page404";
+import About from "./components/about/About";
+import Catalog from "./components/catalog/Catalog";
+import Loading from "./components/loading/Loading";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
+import Cart from "./components/cart/Cart";
+import ProductPage from "./components/catalog/ProductPage";
 import { connect } from "react-redux";
 import { loadUser } from "./actions/authAction";
-import PropTypes from "prop-types";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import PropTypes from "prop-types";
 
 class App extends React.Component {
   componentDidMount() {
-    document.body.style = "background: rgb(145, 145, 145, 0.6)";
     this.props.loadUser();
   }
 
@@ -25,23 +25,29 @@ class App extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
+      <div>
         <NavBar />
-        <Switch>
-          <Route exact path="/" component={Dashboard} />
-          <Route exact path="/products">
-            <Menu />
-            <Path path="/ Home / Products" />
-            <Products />
-          </Route>
-          <Route path="/products/:id" component={ProductDetail} />
-          <Route path="/login" exact component={Login} />
-          <Route path="/register" exact component={Register} />
-          <Route path="/cart" exact component={Cart} />
-        </Switch>
-      </React.Fragment>
+        { this.props.userLoading ? <Loading /> : 
+          <React.Fragment>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/about" component={About} />
+              <Route exact path="/catalog" component={Catalog} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/cart" component={Cart} />
+              <Route exact path="/catalog/:id" component={ProductPage} />
+              <Route component={Page404} />
+            </Switch>
+          </React.Fragment>
+        }
+      </div>
     );
   }
 }
 
-export default connect(null, { loadUser })(App);
+const mapStateToProps = (state) => ({
+  userLoading: state.auth.isLoading,
+})
+
+export default connect(mapStateToProps, { loadUser })(App);

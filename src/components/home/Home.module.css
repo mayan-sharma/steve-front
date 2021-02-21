@@ -1,0 +1,39 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.text {
+    font-size: 2rem;
+    padding: 3.4rem;
+}
+
+.text span {
+    background-color: #fff;
+    border: none;
+    border-radius: 13px;
+    padding: 1rem 3rem;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 2px 2px 3px 2px #ccc;
+    transition: .2s ease-in-out;
+}
+
+.text span:hover {
+    color: #fff;
+    background-color: #000;
+}
+
+.img {
+    background: url("../../assets/ginger-cat-order-complete.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 80vh;
+}
+
+@media (max-width: 768px) {
+    .container {
+        display: block;
+        text-align: center;
+    }
+}

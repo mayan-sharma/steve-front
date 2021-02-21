@@ -1,8 +1,8 @@
 import React, { Component } from "react";
+import styles from "./Login.module.css";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authAction";
-import styles from "./login.module.css";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 class Login extends Component {
   constructor() {
@@ -10,7 +10,7 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      error: "",
+      // error: "",
     };
   }
 
@@ -21,47 +21,50 @@ class Login extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
-    this.setState({ error: "" });
-
-    if (!this.state.email || !this.state.password) {
-      this.setState({ error: "Fill in all fields!" });
-    }
-
-    if (!this.state.error.length) {
-      this.props.loginUser(this.state);
-    }
+    console.log(this.state);
+    this.props.loginUser(this.state);
   };
 
   render() {
+
     if (this.props.isAuthenticated) {
       return <Redirect to="/" />;
     }
+
     return (
-      <form onSubmit={this.handleSubmit} className={styles.container}>
-        <h1>LOGIN</h1>
-        <input
-          type="text"
-          name="email"
-          onChange={this.handleChange}
-          placeholder="Email"
-        />
-        <input
-          type="text"
-          name="password"
-          onChange={this.handleChange}
-          placeholder="Password"
-        />
-        <input
-          type="submit"
-          className={styles.submit}
-          value="LOGIN"
-          disabled={this.props.isLoading}
-        />
-        {this.state.error.length > 0 && (
-          <p className={styles.error}>{this.state.error}</p>
-        )}
-      </form>
+      <div className={styles.container}>
+        <div className={styles.img}></div>
+        <form onSubmit={this.handleSubmit} className={styles.form}>
+          <h1>LOGIN</h1>
+          <div>
+            <input
+              type="text"
+              name="email"
+              onChange={this.handleChange}
+              placeholder="email"
+              required
+            />
+            <input
+              type="text"
+              name="password"
+              onChange={this.handleChange}
+              placeholder="password"
+              required
+            />
+          </div>
+          <input
+            type="submit"
+            className={styles.submit}
+            value="LOGIN"
+            disabled={this.props.isLoading}
+            />
+            <p>Don't have an account? <Link to="/register">Register</Link></p>
+            <p className={styles.error}>{this.props.error}</p>
+            {/* {this.state.error.length > 0 && (
+              <p className={styles.error}>{this.state.error}</p>
+            )} */}
+        </form>
+      </div>
     );
   }
 }
@@ -69,6 +72,7 @@ class Login extends Component {
 const mapStateToProps = (state) => ({
   isLoading: state.auth.isLoading,
   isAuthenticated: state.auth.isAuthenticated,
+  error: state.auth.error,
 });
 
 export default connect(mapStateToProps, { loginUser })(Login);

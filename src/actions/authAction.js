@@ -51,38 +51,43 @@ export const registerUser = ({ name, email, password }) => (dispatch) => {
         payload: res.data,
       })
     )
-    .catch((err) =>
+    .catch(({ response }) => {
+      console.log(response);
       dispatch({
         type: REGISTER_FAIL,
-        payload: err,
-      })
+        payload: response.data,
+      })}
     );
 };
 
 //Login user
 export const loginUser = ({ email, password }) => (dispatch) => {
   dispatch({ type: USER_LOADING });
-  // const reqBody = JSON.stringify({ email, password });
-  // console.log(reqBody);
+  
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  
+  const reqBody = JSON.stringify({ email, password })
   axios
-    .post(URL + "/login", { email: email, password: password })
+    .post(URL + "/login", reqBody, config)
     .then((res) =>
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data,
       })
     )
-    .catch((err) => {
-      dispatch({ type: LOGIN_FAIL });
-      // console.log(err);
+    .catch(({ response }) => {
+      dispatch({ type: LOGIN_FAIL, payload: response.data });
+      console.log(response);
     });
 };
 
 //Logout user
-export const logoutUser = () => {
-  return {
-    type: LOGOUT_SUCCESS,
-  };
+export const logoutUser = () => (dispatch) => {
+  dispatch({ type: LOGOUT_SUCCESS, payload: { message: '' }});
 };
 
 export const tokenConfig = (getState) => {
