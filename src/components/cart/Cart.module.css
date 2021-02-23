@@ -1,13 +1,13 @@
 .noAccess {
-  display: flex;
-  height: 80vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .noAccessImg {
   background: url("../../assets/ginger-cat-page-not-found.png");
-  width: 50%;
-  height: 100%;
+  height: 60vh;
   background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .noAccess div {
@@ -15,7 +15,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2.5rem;
 }
 
 .container {
@@ -81,5 +80,10 @@
 @media (max-width: 768px) {
   .container {
     display: block;
+  }
+
+  .noAccess {
+    display: block;
+    text-align: center;
   }
 }

@@ -10,6 +10,7 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-color: #fff;
+    background-position: center;
     border-radius: 13px;
     box-shadow: 2px 2px 3px 2px #ccc;
     height: 80vh;
@@ -60,6 +61,7 @@
 
     .img {
         width: 90%;
+        height: 60%;
         margin: auto;
     }
 

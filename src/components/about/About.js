@@ -5,8 +5,8 @@ const About = () => (
     <div className={styles.container}>
         <div className={styles.intro}>
             <div className={styles.text}>
-                <h1>THIS IS <br></br> <span>STEVE</span></h1>
-                <p>An open source ecommerce platform</p>
+                <h1 className="head-2">THIS IS <br></br> <span className="head-1">STEVE</span></h1>
+                <p className="head-2">An open source ecommerce platform</p>
             </div>
             <div className={styles.img}></div>
         </div>

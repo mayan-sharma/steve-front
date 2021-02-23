@@ -61,7 +61,7 @@ class Cart extends Component {
       ) : (
         <div className={styles.noAccess}>
           <div className={styles.noAccessImg}></div>
-          <div>Login to access cart</div>
+          <div className="head-1">Login to access cart</div>
         </div>
       ) 
     )

@@ -9,3 +9,45 @@ body {
   font-family: redhat;
   padding: 1rem;
 }
+
+.head-1 {
+  font-size: 4rem;
+}
+
+.head-2 {
+  font-size: 2rem;
+}
+
+.head-3 {
+  font-size: 1.2rem;
+}
+
+.button {
+  background-color: #fff;
+  border: none;
+  border-radius: 13px;
+  padding: 1rem 3rem;
+  font-size: 1rem;
+  font-weight: bold;
+  box-shadow: 2px 2px 3px 2px #ccc;
+  transition: .2s ease-in-out;
+}
+
+.button:hover {
+  color: #fff;
+  background-color: #000;
+}
+
+@media (max-width: 768px) {
+  .head-1 {
+    font-size: 2.5rem;
+  }
+
+  .head-2 {
+    font-size: 1.2rem;
+  }
+
+  .button {
+    padding: 1rem;
+  }
+}
